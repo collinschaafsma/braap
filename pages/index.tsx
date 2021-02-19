@@ -8,7 +8,7 @@ export default function Home() {
       <Head>
         <title>Hello-Home</title>
       </Head>
-      <div>index</div>
+      <div className="bg-gradient-to-r from-red-500 shadow">index</div>
     </Layout>
   )
 }
