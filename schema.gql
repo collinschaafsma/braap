@@ -1,0 +1,8 @@
+type Video {
+  description: String
+  link: String!
+}
+
+type Query {
+  videos: [Video!]!
+}
