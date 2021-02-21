@@ -4,9 +4,10 @@ import Layout from '../components/Layout'
 import { graphQLClient } from '../utils/graphql-client'
 import { gql } from 'graphql-request'
 import useSWR from 'swr'
-import { ToDouble } from 'faunadb'
 
-const fetcher = async (query) => await graphQLClient.request(query);
+const fetcher = async function(query) {
+  return await graphQLClient.request(query)
+}
 
 export default function Home() {
 
@@ -29,21 +30,22 @@ export default function Home() {
     console.log(error)
     return <div>borked</div>
   }
-  console.log(data)
-
 
   return (
     <Layout>
       <Head>
         <title>Braap</title>
       </Head>
-      <div className="bg-gradient-to-r from-red-500 shadow">Videos
+      <div className="bg-gradient-to-r from-red-500 shadow">Braap!</div>
+      {data ? (
         <ul>
           {data.videos.data.map((video) => (
-            <li>{video.link}</li>
+            <li key={video._id}>{video.link}</li>
           ))}
-        </ul>
-      </div>
+          </ul>
+      ) : (
+        <div className="loader">loading...</div>
+      )}
     </Layout>
   )
 }
