@@ -1,29 +1,15 @@
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import Layout from '../components/Layout'
-import { graphQLClient } from '../utils/graphql-client'
-import { gql } from 'graphql-request'
+import { getAllVideosQuery, fetcher } from '../lib/video'
 import useSWR from 'swr'
 
-const fetcher = async function(query) {
-  return await graphQLClient.request(query)
-}
 
-export default function Home() {
+
+const Home = (props: {videos}) => {
 
   const { error, data } = useSWR(
-    gql`
-        {
-        videos {
-          data {
-            _id
-            link
-            _ts
-          }
-        }
-      }
-    `,
-    fetcher  
+    getAllVideosQuery, fetcher, { initialData: props.videos }
   )
   
   if (error) {
@@ -50,10 +36,13 @@ export default function Home() {
   )
 }
 
+export default Home
+
 export const getStaticProps: GetStaticProps = async () => {
+  const videos = await fetcher(getAllVideosQuery)
   return {
     props: {
-
+      videos
     }
   }
 }
