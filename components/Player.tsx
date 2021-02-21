@@ -1,14 +1,18 @@
-export const Player = (props) => {
+const Player = (props) => {
 
   const { video } = props
 
   return (
-    <iframe 
+    <div className="bg-white hover:shadow-xl">
+    <iframe
+      width="100%"
+      height="350"
       typeof="text/html" 
-      width="640" 
-      height="360"
       src={`${video.link}?autoplay=0&modestbranding=1`}
       frameBorder="0">
     </iframe>
+    </div>
   )
 }
+
+export default Player
