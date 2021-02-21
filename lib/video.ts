@@ -6,13 +6,13 @@ export const fetcher = async (query) => {
 }
 
 export const getAllVideosQuery =  gql`
-    {
-      videos {
-        data {
-          _id
-          link
-          _ts
-        }
+  {
+    videos {
+      data {
+        _id
+        link
+        _ts
       }
     }
+  }
 `

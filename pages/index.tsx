@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Layout from '../components/Layout'
 import { getAllVideosQuery, fetcher } from '../lib/video'
 import useSWR from 'swr'
+import { Player } from '../components/Player'
 
 
 
@@ -26,7 +27,9 @@ const Home = (props: {videos}) => {
       {data ? (
         <ul>
           {data.videos.data.map((video) => (
-            <li key={video._id}>{video.link}</li>
+            <li key={video._id}>
+              <Player video={video} />
+            </li>
           ))}
           </ul>
       ) : (
