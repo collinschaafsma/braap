@@ -1,6 +1,8 @@
-const Player = (props) => {
+import {Video} from "../lib/video"
 
-  const { video } = props
+const Player = (props: {video: Video}) => {
+
+  const {video} = props
 
   return (
     <div className="bg-white hover:shadow-xl">

@@ -1,16 +1,16 @@
-import { GetStaticProps } from 'next'
+import {GetStaticProps} from 'next'
 import Head from 'next/head'
 import Layout from '../components/Layout'
-import { getAllVideosQuery, fetcher } from '../lib/video'
+import {getAllVideosQuery, fetcher, Video} from '../lib/video'
 import useSWR from 'swr'
 import Card from '../components/Card'
 
 
 
-const Home = (props: {videos}) => {
+const Home = (props: {videos: Video}) => {
 
-  const { error, data } = useSWR(
-    getAllVideosQuery, fetcher, { initialData: props.videos }
+  const {error, data} = useSWR(
+    getAllVideosQuery, fetcher, {initialData: props.videos}
   )
   
   if (error) {
@@ -28,8 +28,8 @@ const Home = (props: {videos}) => {
 
         {data ? (
           <div className="flex flex-wrap px-6">
-            {data.videos.data.map((video) => (
-              <div className="w-full lg:w-1/2   md:px-4 lg:px-6 py-5">
+            {data.videos.data.map((video: Video) => (
+              <div className="w-full lg:w-1/2 md:px-4 lg:px-6 py-5">
                 <Card video={video} />
               </div>
             ))}
